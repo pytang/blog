@@ -1,0 +1,28 @@
+{% extends 'register.html' %}
+
+{% block form %}
+    <form action="/login" method="post">
+    <div class="input_outer">
+        <span class="u_user"></span>
+        <input name="loginname" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+        <p class="warning_loginname" style="margin: 4px 20px;"></p>
+    </div>
+    <div class="input_outer">
+        <span class="us_uer"></span>
+        <input name="loginpwd" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+        <p class="warning_loginpwd" style="margin: 4px 20px;"></p>
+    </div>
+    <div id="" class="forget-pwd">
+        <input type="checkbox" name="isSave" class="isSave" id="isSave"><label for="isSave">记住密码</label>
+        <a href="">忘记密码</a>
+    </div>
+    <div class="mb2">
+        <input class="act-but submit" type="submit" style="color: #FFFFFF" value="登录"><a href='/register' class="act-but submit" style="color: #FFFFFF" id="btnregister">注册</a>
+    </div>
+    </form>
+
+{% endblock %}
+
+{% block script %}
+    <script src="../static/js/warning_login.js"></script>
+{% endblock %}

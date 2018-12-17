@@ -1,0 +1,239 @@
+body{
+	background: #333333;
+	font-family: tahoma,"microsoft yahei","\5FAE\8F6F\96C5\9ED1"!important;
+}
+.navbar-right a{
+	color: #444
+}
+.navbar-header{
+	padding-left:140px;
+	padding-right: 50px;
+	font-weight: bold;
+}
+.btn_search{
+	position: relative;
+	left:-28px;
+	cursor: pointer;
+}
+.my_edit{
+    margin-top:80px; 
+}
+#edit_form{
+	background: rgba(30,30,30,.5);
+	color: #eee;
+	padding-bottom: 8px;
+	border-radius: 3px;
+    border: 1px solid #222;
+}
+.container_bg{
+	background: #dd6572;
+	background-color:rgba(255, 255, 255, 0.5);
+	padding-bottom: 30px; 
+}
+ #content{
+ 	height:95px;
+ 	border-style:solid;
+ 	border-width:1px;
+ 	border-color:#AEEEEE}
+.clear{
+    clear: both;
+    margin-bottom: 10px;
+}
+.emoji{
+	background: url(../img/face.png)  no-repeat;
+	padding:1px 0 10px 25px;
+	cursor: pointer;
+	font-size: 13px;
+
+
+}
+.pic{
+	background: url(../img/pic.png) no-repeat;
+	margin-left: 10px;
+	padding:1px 0 10px 25px;
+	cursor: pointer;
+	font-size: 13px;
+
+}
+.video{
+	background: url(../img/video.png) no-repeat;
+    margin-left: 10px;
+	padding:1px 0 10px 25px;
+	cursor: pointer;
+	font-size: 13px;
+
+}
+
+/*2018.11.24评论区增加功能yj*/
+#talkhuifu{
+    list-style: none;
+    width: 30%;
+    float: left;
+    height: 22px;
+    margin: 0 0 0 88px;
+    padding: 0;
+    display: list-item;
+    text-align: -webkit-match-parent;
+ }
+
+.liuyanqu{
+    display:none;
+	position: relative;
+}
+#thumbicon:hover{
+	color: orangered;
+	transition: 1s;
+}
+.pinglun{
+    width:470px;
+    height: 100px;
+    color: black;
+    text-align: left;
+    font-size: 20px;
+	padding-left:8px;
+	border-radius: 12px;
+	margin: 15px 0 0 12px;
+	background: rgba(255,255,255,.9);
+
+}
+.tijiao{
+    float: right;
+    background:orange;
+    border: none;
+    color: #333333;
+    border-bottom: 10px;
+    width: 50px;
+    height: 20px;
+	border-radius: 5px;
+
+
+}
+
+
+.myEmoji{
+	background: #fff;
+	padding: 15px;
+	border-radius: 3px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 20px 1px rgba(0,0,0,0.2);
+    position:absolute;
+    top:40px;
+    z-index: 9999;
+    display: none
+}
+.myEmoji img{
+	 border: 1px solid #ccc;
+	 padding: 4px;
+}
+#send{
+	 margin-top:-5px ;
+	 background: #717f94;
+	 color: #000000;
+	 padding: 8px 30px
+}
+.message{
+	background:rgba(40,40,40,.6);
+	height: 100%;
+	margin-top:5px;
+	border: 1px solid #333333;
+	padding :15px;
+	color: #eeeeee;
+}
+.msg_content{
+
+	margin-top:10px;
+}
+.sort{
+	color:#777;
+}
+.part_right{
+	margin-top: 80px;
+	padding-left: 20px;
+}
+.inform{
+	background: #fff;
+
+	border-radius: 3px;
+
+    border: 1px solid #eee;
+}
+.inform img{
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	margin-top: 20px;
+}
+.my_inform{
+	padding: 10px;
+}
+.item_hot{
+	padding: 10px 20px
+}
+.item_num{
+	color: #999
+}
+.mypic{
+	margin-top:5px;
+	width: 100%;
+	height: 200px;
+}
+.mypic:hover{
+	cursor:url('../img/enlarge.png'),auto;
+}
+.part_hot{
+	background: #fff;
+	margin-top:5px;
+	border: 1px solid #eee;
+}
+
+@media screen and (max-width: 699px) and (min-width: 320px) {
+  .my_edit{
+    margin-top:160px;
+  }
+  .item_hot{
+	font-size: 12px;
+}
+	.part_right{
+		margin-top: 10px;
+		padding-left: 0px;
+
+	}
+	.btn_search{
+		padding: 0px;
+	}
+
+	.navbar-header{
+		padding:0;
+	}
+
+	.item_hot{
+		padding: 15px 25px
+	}
+	.inform{
+		padding-bottom: 15px;
+	}
+
+}
+.delete{
+    border: none;
+    background:none;
+    outline: none;
+	display: none;
+}
+.delete_topic{
+	float: right;
+	font-size: 16px;
+	transition-duration: 1000ms;
+	cursor: pointer;
+	color: #888888;
+
+}
+.glyphicon{
+	z-index: 9999;
+}
+.delete_topic:hover{
+	transform: rotate(90deg);
+	color: #eeeeee;
+}
+
+

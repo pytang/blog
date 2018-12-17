@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+
+{% block blogbody %}
+    <div class="musicFormDiv">
+        <div class="clear"></div>
+        <form action="/info" enctype="multipart/form-data" method="post" class="musicForm">
+            <p>
+                <span>昵称:</span>
+                <input type="text" name="username" class="input-line" value="{{ params.user.username }}">
+            </p>
+            <p>
+                <span>email:</span>
+                <input type="text" name="email" class="input-line" value="{{ params.user.email }}">
+            </p>
+            <p>
+                <span>个性签名:</span>
+                <input type="text" name="signature" class="input-line" value="{{ params.user.signature }}">
+            </p>
+            <p>
+                <span>手机:</span>
+                <input type="text" name="phone" class="input-line" value="{{ params.user.phone }}">
+            </p>
+            <p>
+                <span>职业:</span>
+                <input type="text" name="career" class="input-line" value="{{ params.user.career }}">
+            </p>
+            <p>
+                <input type="button" value="选择头像" class="btnSubMusic btnMusic">
+                <input type="file" name="userhead" style="display:none;" class="musicHidden">
+                <input type="submit" value="确认修改" class="btnMusic btnMusic2">
+            </p>
+        </form>
+
+
+    </div>
+    <script>
+    $(function () {
+        $('.btnSubMusic').click(function () {
+            $(".musicHidden").click();
+        });
+    });
+    </script>
+
+{% endblock %}
+
+
+
+
+
+
+
+

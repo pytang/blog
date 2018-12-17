@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+
+
+{% block blogbody %}
+    <div class="musicFormDiv">
+        <div class="clear"></div>
+        <form action="/upload-music" enctype="multipart/form-data" method="post" class="musicForm">
+            <p>
+                音乐名:
+                <input type="text" name="musicname" class="input-line">
+            </p>
+            <p>
+                演唱者:
+                <input type="text" name="singer" class="input-line">
+            </p>
+            <p>
+                专辑名:
+                <input type="text" name="album" class="input-line">
+            </p>
+            <p>
+                <input type="button" value="选择音乐" class="btnSubMusic btnMusic">
+                <input type="file" name="music" style="display:none;" class="musicHidden">
+                <input type="submit" value="上传背景音乐" class="btnMusic btnMusic2">
+            </p>
+        </form>
+        <!--<div class="musicList" id="musicForm1">
+            <div class="viny">
+                <dl>
+                    <dt class="art"><img src="/static/images/artwork.png" alt="专辑"></dt>
+                    <dd class="icon_song"><span></span>成都</dd>
+                    <dd class="icon_artist"><span></span>歌手：赵雷</dd>
+                    <dd class="icon_album"><span></span>所属专辑：《赵小雷》</dd>
+                    <dd class="icon_like"><span></span><a href="#">喜欢</a></dd>
+                    <dd class="music">
+                        <audio autoplay="autoplay" src="/static/images/default.mp3" controls loop></audio></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="musicList" id="musicForm1">
+            <div class="viny">
+                <dl>
+                    <dt class="art"><img src="/static/images/artwork.png" alt="专辑"></dt>
+                    <dd class="icon_song"><span></span>成都</dd>
+                    <dd class="icon_artist"><span></span>歌手：赵雷</dd>
+                    <dd class="icon_album"><span></span>所属专辑：《赵小雷》</dd>
+                    <dd class="icon_like"><span></span><a href="#">喜欢</a></dd>
+                    <dd class="music">
+                        <audio autoplay="autoplay" src="/static/images/default.mp3" controls loop></audio></dd>
+                </dl>
+            </div>
+        </div>-->
+        {% for music in params.musics %}
+        <div class="musicList" id="musicForm1">
+            <div class="viny">
+                <dl>
+                    <dt class="art"><img src="/static/images/artwork.png" alt="专辑"></dt>
+                    <dd class="icon_song"><span></span>{{ music.musicname }}</dd>
+                    <dd class="icon_artist"><span></span>歌手：{{ music.singer }}</dd>
+                    <dd class="icon_album"><span></span>所属专辑：{{ music.album }}</dd>
+                    <dd class="icon_like"><span></span><a href="#">喜欢</a></dd>
+                    <dd class="music">
+                        <audio src="/static/upload/{{ music.filename }}" controls loop></audio></dd>
+                </dl>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <script>
+    $(function () {
+        $('.btnSubMusic').click(function () {
+            $(".musicHidden").click();
+        });
+    });
+    </script>
+
+{% endblock %}
+
+
+
+
+
+
+
+

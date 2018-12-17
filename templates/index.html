@@ -1,0 +1,352 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>黑色时间轴</title>
+<link href="/static/css/style.css" rel="stylesheet">
+<link href="/static/css/animation.css" rel="stylesheet">
+<link href="/static/css/lrtk.css" rel="stylesheet" />
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/js.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<script src="/static/js/jquery-3.1.0.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+    {% block style %}
+    {% endblock %}
+</head>
+
+<body id="indexbody">
+<header>
+	<nav id="nav">
+    	<ul>
+        	<li><a href="/">网站首页</a></li>
+            <li><a href="{{ url_for('my_views') }}" target="_self" title="个人主页">个人主页</a></li>
+            <li><a href="#" target="_self" title="相册">相册</a></li>
+            <li><a href="#" target="_self" title="说说">说说</a></li>
+            <li><a href="#" target="_self" title="心情日志">心情日志</a></li>
+            <li><a href="/upload-music" target="_self" title="上传音乐">音乐</a></li>
+            {% if params.user %}
+                <li class="logoutLi"><a href="/logout" target="_self" title="退出">退出</a></li>
+                <li class="userheadLi"><a href="/info"><img src="/static/images/{{ params.user.userhead }}" alt=""> {{ params.user.loginname }}</a></li>
+            {% else %}
+                <li><a href="/login" target="_self" title="登陆">登陆</a></li><!--将来会右浮-->
+            {% endif %}
+        </ul>
+         <script src="/static/js/silder.js"></script><!--获取当前页导航 高亮显示标题-->
+    </nav>
+</header>
+
+<div id="mainbody">
+	<div class="info">
+        <!-- 待集成块 -->
+        {% block headdown %}
+        <figure>
+            <img src="/static/images/art.jpg" alt="秋。。。相知">
+            <figcaption>
+                <strong>渡人如渡己，渡己，亦是渡。</strong>
+                当我们被误解时，会花很多时间去辩白。 但没有用，没人愿意听，大家习惯按自己的所闻、理解做出判别，每个人其实都很固执。与其努力且痛苦的试图扭转别人的评判，不如默默承受，给大家多一点时间和空间去了解。而我们省下辩解的功夫，去实现自身更久远的人生价值。其实，渡人如渡己，渡已，亦是渡人。
+            </figcaption>
+        </figure>
+        {% endblock %}
+        <div class="card">
+        	 <h1>我的名片</h1>
+              <p>网名：
+                  {% if params.user %}
+                  {{ params.user.username }}
+                  {% else %}
+                      无
+                  {% endif %}
+              </p>
+              <p>职业：
+                  {% if params.user %}
+                  {{ params.user.career }}
+                  {% else %}
+                      无
+                  {% endif %}
+              </p>
+              <p>电话：{% if params.user %}
+                  {{ params.user.phone }}
+                  {% else %}
+                      无
+                  {% endif %}</p>
+              <p>Email：{% if params.user %}
+                  {{ params.user.email }}
+                  {% else %}
+                      无
+                  {% endif %}</p>
+              <ul class="linkmore">
+                <li><a href="/" class="talk" title="给我留言"></a></li>
+                <li><a href="/" class="address" title="联系地址"></a></li>
+                <li><a href="/" class="email" title="给我写信"></a></li>
+                <li><a href="/" class="photos" title="生活照片"></a></li>
+                <li><a href="/" class="heart" title="关注我"></a></li>
+              </ul>
+        </div>
+    </div>
+
+<!--info结束-->
+
+<!--博客的列表开始-->
+    <div class="blogs">
+        {% block blogbody %}
+        <ul class="bloglist">
+            <li>
+                <div class="row_box">
+                    <div class="ti"></div><!--三角形-->
+                    <div class="ci"></div><!--圆形-->
+                    <h2 class="title"> <a href="#">我希望爱情是这样的</a></h2>
+                    <ul class="textinfo">
+                        <a href="#"><img src="/static/images/s1.jpg"></a>
+                        <p>我希望我的爱情是这样的，相濡以沫，举案齐眉，平淡如水。我在岁月中找到他，依靠他，将一生交付给他。做他的妻子，他孩子的母亲，为他做饭，洗衣服，缝一颗掉了的纽扣。然后，我们一起在时光中变老。</p>
+                    </ul>
+                    <ul class="details">
+                        <li class="likes"><a href="#">10</a></li>
+                        <li class="comments"><a href="#">34</a> </li>
+                        <li class="icon_time"><a href="#">2015-1-9</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+             <li>
+                <div class="row_box">
+                    <div class="ti"></div><!--三角形-->
+                    <div class="ci"></div><!--圆形-->
+                    <h2 class="title"> <a href="#">我希望爱情是这样的</a></h2>
+                    <ul class="textinfo">
+                        <a href="#"><img src="/static/images/s1.jpg"></a>
+                        <p>我希望我的爱情是这样的，相濡以沫，举案齐眉，平淡如水。我在岁月中找到他，依靠他，将一生交付给他。做他的妻子，他孩子的母亲，为他做饭，洗衣服，缝一颗掉了的纽扣。然后，我们一起在时光中变老。</p>
+                    </ul>
+                    <ul class="details">
+                        <li class="likes"><a href="#">10</a></li>
+                        <li class="comments"><a href="#">34</a> </li>
+                        <li class="icon_time"><a href="#">2015-1-9</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+             <li>
+                <div class="row_box">
+                    <div class="ti"></div><!--三角形-->
+                    <div class="ci"></div><!--圆形-->
+                    <h2 class="title"> <a href="#">我希望爱情是这样的</a></h2>
+                    <ul class="textinfo">
+                        <a href="#"><img src="/static/images/s1.jpg"></a>
+                        <p>我希望我的爱情是这样的，相濡以沫，举案齐眉，平淡如水。我在岁月中找到他，依靠他，将一生交付给他。做他的妻子，他孩子的母亲，为他做饭，洗衣服，缝一颗掉了的纽扣。然后，我们一起在时光中变老。</p>
+                    </ul>
+                    <ul class="details">
+                        <li class="likes"><a href="#">10</a></li>
+                        <li class="comments"><a href="#">34</a> </li>
+                        <li class="icon_time"><a href="#">2015-1-9</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li>
+                <div class="row_box">
+                    <div class="ti"></div><!--三角形-->
+                    <div class="ci"></div><!--圆形-->
+                    <h2 class="title"> <a href="#">我希望爱情是这样的</a></h2>
+                    <ul class="textinfo">
+                        <a href="#"><img src="/static/images/s1.jpg"></a>
+                        <p>我希望我的爱情是这样的，相濡以沫，举案齐眉，平淡如水。我在岁月中找到他，依靠他，将一生交付给他。做他的妻子，他孩子的母亲，为他做饭，洗衣服，缝一颗掉了的纽扣。然后，我们一起在时光中变老。</p>
+                    </ul>
+                    <ul class="details">
+                        <li class="likes"><a href="#">10</a></li>
+                        <li class="comments"><a href="#">34</a> </li>
+                        <li class="icon_time"><a href="#">2015-1-9</a></li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li>
+                <div class="row_box">
+                    <div class="ti"></div><!--三角形-->
+                    <div class="ci"></div><!--圆形-->
+                    <h2 class="title"> <a href="#">我希望爱情是这样的</a></h2>
+                    <ul class="textinfo">
+                        <a href="#"><img src="/static/images/s1.jpg"></a>
+                        <p>我希望我的爱情是这样的，相濡以沫，举案齐眉，平淡如水。我在岁月中找到他，依靠他，将一生交付给他。做他的妻子，他孩子的母亲，为他做饭，洗衣服，缝一颗掉了的纽扣。然后，我们一起在时光中变老。</p>
+                    </ul>
+                    <ul class="details">
+                        <li class="likes"><a href="#">10</a></li>
+                        <li class="comments"><a href="#">34</a> </li>
+                        <li class="icon_time"><a href="#">2015-1-9</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        {% endblock %}
+    <!--博客列表部分结束-->
+    
+    
+    <!--右半部分开始-->
+        <aside>
+{#            <div class="clear"></div>#}
+            <div class="viny">
+                {% if params.user %}
+                <dl>
+                    <dt class="art"><img src="/static/images/artwork.png" alt="专辑"></dt>
+                    <dd class="icon_song"><span></span>歌名:{{ params.user.music.musicname }}</dd>
+                    <dd class="icon_artist"><span></span>歌手：{{ params.user.music.singer }}</dd>
+                    <dd class="icon_album"><span></span>所属专辑：{{ params.user.music.album }}</dd>
+                    <dd class="icon_like"><span></span><a href="#">喜欢</a></dd>
+                    <dd class="music">
+                        <audio autoplay="autoplay" src="/static/upload/{{ params.user.music.filename }}" controls loop></audio></dd>
+                </dl>
+                {% else %}
+                    <dl>
+                    <dt class="art"><img src="/static/images/artwork.png" alt="专辑"></dt>
+                    <dd class="icon_song"><span></span>歌名:成都</dd>
+                    <dd class="icon_artist"><span></span>歌手：赵雷</dd>
+                    <dd class="icon_album"><span></span>所属专辑：赵小雷</dd>
+                    <dd class="icon_like"><span></span><a href="#">喜欢</a></dd>
+                    <dd class="music">
+                        <audio autoplay="autoplay" src="/static/upload/default.mp3" controls loop></audio></dd>
+                </dl>
+                {% endif %}
+            </div>
+            <div class="tuijian">
+                <h2>热门文章</h2>
+                <ol>
+                    <li><span> <strong>1</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+                    <li><span> <strong>2</strong></span><a href="#">励志人生-要做一个潇洒的女人</a></li>
+                    <li><span> <strong>3</strong></span><a href="#">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
+                    <li><span> <strong>4</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+                    <li><span> <strong>5</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+                    <li><span> <strong>6</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+                    <li><span> <strong>7</strong></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+                </ol>
+            </div>
+            <div class="toppic">
+                <h2>图文并茂</h2>
+                <ul>
+                    <li><a href="#"><img src="/static/images/k01.jpg">腐女不可怕，就怕腐女会画画！<p>伤不起</p></a> </li>
+                    <li><a href="#"><img src="/static/images/k01.jpg">问前任，你还爱我吗？无限戳中泪点~<p>感兴趣</p></a> </li>
+                    <li><a href="#"><img src="/static/images/k01.jpg">世上所谓幸福，就是一个笨蛋遇到一个傻瓜。<p>喜欢</p></a> </li>  
+                </ul>
+            </div>
+            <div class="clicks">
+                <h2>热门点击</h2>
+                <ol>
+                    <li><span><a href="#">慢生活</a></span><a href="#">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+                    <li><span><a href="#">爱情美文</a></span><a href="#">励志人生-要做一个潇洒的女人</a></li>
+                    <li><span><a href="#">慢生活</a></span><a href="#">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
+                    <li><span><a href="#">博客模板</a></span><a href="#">Green绿色小清新的夏天-个人博客模板</a></li>
+                    <li><span><a href="#">女生博客模板</a></span><a href="#">女生清新个人博客网站模板</a></li>
+                    <li><span><a href="#">wedding</a></span><a href="#">Wedding-婚礼主题、情人节网站模板</a></li>
+                    <li><span><a href="#">古典风格</a></span><a href="#">花气袭人是酒香—个人网站模板</a></li>
+                </ol>
+            </div>
+            <div class="search">
+                <form class="searchform" method="post" action="#">
+                    <input type="text" placeholder="Search" name="s" onFocus="" onBlur="">
+                </form>
+            </div>
+        </aside>
+	</div>
+    <!--blogs结束-->
+</div>
+<!--mainbody结束-->
+
+
+<div id="tbox"> <a id="togbook" href="#"></a>
+ <a id="gotop" href="javascript:void(0)"></a> </div>
+<script>
+
+!function(){
+
+function n(n,e,t){
+
+return n.getAttribute(e)||t
+
+}
+
+function e(n){
+
+return document.getElementsByTagName(n)
+
+}
+
+function t(){
+
+var t=e("script"),o=t.length,i=t[o-1];
+
+return{
+
+l:o,z:n(i,"zIndex",-1),o:n(i,"opacity",1),c:n(i,"color","253,133,9"),n:n(i,"count",99)
+
+}
+
+}
+
+function o(){
+
+a=m.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,
+
+c=m.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight
+
+}
+
+function i(){
+
+r.clearRect(0,0,a,c);
+
+var n,e,t,o,m,l;
+
+s.forEach(function(i,x){
+
+for(i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>a||i.x<0?-1:1,i.ya*=i.y>c||i.y<0?-1:1,r.fillRect(i.x-.5,i.y-.5,1,1),e=x+1;e<u.length;e++)n=u[e],
+
+null!==n.x&&null!==n.y&&(o=i.x-n.x,m=i.y-n.y,
+
+l=o*o+m*m,l<n.max&&(n===y&&l>=n.max/2&&(i.x-=.03*o,i.y-=.03*m),
+
+t=(n.max-l)/n.max,r.beginPath(),r.lineWidth=t/2,r.strokeStyle="rgba("+d.c+","+(t+.2)+")",r.moveTo(i.x,i.y),r.lineTo(n.x,n.y),r.stroke()))
+
+}),
+
+x(i)
+
+}
+
+var a,c,u,m=document.createElement("canvas"),
+
+d=t(),l="c_n"+d.l,r=m.getContext("2d"),
+
+x=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||
+
+function(n){
+
+window.setTimeout(n,1e3/45)
+
+},
+
+w=Math.random,y={x:null,y:null,max:2e4};m.id=l,m.style.cssText="position:fixed;top:0;left:0;z-index:"+d.z+";opacity:"+d.o,e("body")[0].appendChild(m),o(),window.onresize=o,
+
+window.onmousemove=function(n){
+
+n=n||window.event,y.x=n.clientX,y.y=n.clientY
+
+},
+
+window.onmouseout=function(){
+
+y.x=null,y.y=null
+
+};
+
+for(var s=[],f=0;d.n>f;f++){
+
+var h=w()*a,g=w()*c,v=2*w()-1,p=2*w()-1;s.push({x:h,y:g,xa:v,ya:p,max:6e3})
+
+}
+
+u=s.concat([y]),
+
+setTimeout(function(){i()},100)
+
+}();
+
+</script>
+</body>
+</html>

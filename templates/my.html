@@ -1,0 +1,319 @@
+{% extends 'index.html' %}
+{% block style %}
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/style1.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<style>
+    .my_edit{
+        margin-top: 20px;
+    }
+    .info{
+        overflow: visible;
+    }
+
+</style>
+{% endblock %}
+
+{% block headdown %}
+    <div class="col-sm-6 col-xs-12 my_edit" >
+
+			<div class="row" id="edit_form" >
+				<span class="pull-left" style="margin:15px;">编写新鲜事</span>
+				<span class="tips pull-right" style="margin:15px;"></span>
+				<form action="/my" method="post" role="form" style="margin-top: 50px;" enctype="multipart/form-data">
+					  <div class="form-group">
+						   <div class="col-sm-12">
+
+                               <div contentEditable="true" id="content" class="form-control " name="content"></div>
+
+							</div>
+							<div class="col-sm-12" style="margin-top: 12px;">
+								<span class="emoji"  >表情</span>
+
+                                <span class="pic">图片	</span>
+                                <span class="video" >视频</span>
+                                <span>
+
+                                    <input type="file" name="picture" class="select_Img"  style="display:none">
+									<img class="preview" src="">
+                                    {# 添加视频区域#}
+                                    <input type="file" name="video" class="select_Video" style="display:none" >
+
+                                </span>
+
+
+								<div class="myEmoji" >
+									<ul id="myTab" class="nav nav-tabs">
+										<li class="active">
+											<a href="#set" data-toggle="tab">
+											   预设
+											</a>
+										</li>
+										<li><a href="#hot" data-toggle="tab">热门</a></li>
+
+									</ul>
+									<div id="myTabContent" class="tab-content">
+										<div class="tab-pane fade in active" id="set">
+											<div class="emoji_1"></div>
+
+										</div>
+										<div class="tab-pane fade" id="hot">
+										  <div class="emoji_2"></div>
+										</div>
+
+									</div>
+								</div>
+								<!-- <span> <input type="file" id="selectImg" value=""  disabled></input> </span> -->
+{#
+{#
+ <input onclick="this.form.div.value=document.getElememtById('content').innerHTML" type=button>#}
+
+                                <input type=hidden name="div" id="biaoqing">
+
+                                <input type="submit" id="send" class="btn btn-default pull-right" value="发布">
+
+							</div>
+					  </div>
+				</form>
+			</div>
+
+
+
+{#2............博客显示区域,待将数据库的数据传入到这里进行显示#}
+      {% for topic in params.user.topics %}
+			<div class="row item_msg" >
+            <div class="col-sm-12 col-xs-12 message" >
+                    {# 1. ../static/img/icon.png为用户图像 ，待数据库传入 #}
+                    {# 2. ../static/img/icon.png为用户名称 ，待注册表格数据库传入 #}
+                    {# 3. .class="date"为用户发表博客时间，待发表博客后从数据库传入 #}
+                    {# 4. .class="msg_content"为用户发表博客内容，待发表博客后从数据库传入 #}
+                    {# 5. .class="mypic"为用户发表博客图片，待发表博客后从数据库传入 #}
+                     <span class="glyphicon glyphicon-remove delete_topic" title="删除帖子"></span>
+                     <img src="../static/images/{{ topic.user.userhead }}" class="col-sm-2 col-xs-2" style="border-radius: 50%">
+                     <div class="col-sm-10 col-xs-10">
+
+                        <span style="font-weight: bold;">{{ topic.user.loginname }}</span>
+                        <br>
+                        <small class="date" style="color:#999">{{ topic.time }}</small>
+                        <div class="msg_content">
+                            {% if topic.content %}
+                                {{ topic.content|safe }}
+                            {% else %}
+                                <span></span>
+                            {% endif %}
+
+                            {% if topic.image %}
+                                <img class="mypic" src="../static/upload/{{ topic.image }}">
+                            {% else %}
+                                <span></span>
+                            {% endif %}
+                            {% if topic.video %}
+{#                                    <video src="../static/{{ topic.video }}"><video>#}
+                                <video width="320" height="240" controls>
+                                  <source src="../static/upload/{{ topic.video }}" type="video/mp4">
+                                  <object data="../static/upload/{{ topic.video }}" width="320" height="240">
+                                    <embed width="320" height="240" src="../static/upload/{{ topic.video }}">
+                                  </object>
+                                </video>
+                            {% else %}
+                                <span></span>
+                            {% endif %}
+
+
+
+                        </div>
+                     </div>
+                    <div class="clear"></div>
+                    {#2018.11.24添加的评论回复区域#}
+                    <div class="talkhuifu">
+                        <ol >
+                            <li id="talkhuifu">
+                                <div id="huifu">
+                                    <!--<a href="javascript:void(0)" style="color: #CFC" >回复</a>-->
+                                    <span class="glyphicon glyphicon-tasks"></span>
+                                    <span class="reply" >回复</span>
+                                </div>
+                                <div></div>
+                            </li>
+                             <li id="talkhuifu">
+                                 <span class="glyphicon glyphicon-heart-empty" id="thumbicon"></span>
+                                 <label for="thumbicon">赞</label>
+                             </li>
+                             <li class="talkhuifu">
+                                <form action="/delete/{{ topic.id }}" method="post">
+
+                                    <input type="submit" value="删除" class="delete" name="delete">
+
+                                </form>
+                            </li>
+                        </ol>
+
+                    </div>
+                </div>
+            <div class="liuyanqu">
+                            <form action="/liuyan" method="post">
+                                <input type="textarea" class="pinglun" name="liuyan" autocomplete="off">
+                                <div class="clear"></div>
+                                <input type="hidden" name="topicid" value="{{ topic.id }}">
+                                <input type="submit" value="上传" class="tijiao">
+                            </form>
+                        </div>
+
+            </div>
+            <div>
+            {% for comment in topic.comments %}
+                <p>用户:{{ comment.user.loginname }}</p>
+                <p>评论时间:{{ comment.time }}</p>
+                <p>评论内容:{{ comment.content }}</p>
+                <p>点赞数:{{ comment.thumb }}</p>
+            {% endfor %}
+
+            </div>
+
+
+
+        {% endfor %}
+
+    </div>
+    <!-- 这里做发帖输入框 -->
+    <div class="noneforpos"></div>
+
+{% endblock %}
+
+
+{% block blogbody %}
+
+    <!-- 这里可以当做刚发出去的帖子回执区域 -->
+    <script src="/static/js/jquery-3.1.0.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+	$(function(){
+    // 输入框值改变时将内容赋值给[name='div']
+    function valToDiv(){
+        var value=$('#content').html();
+        {#<img src="http://127.0.0.1:5000/static/img/f2.png" style="width:25px;height:25px">#}
+
+
+        $("[name='div']").val($('#content').html());
+    };
+    // 输入框键盘抬起触发
+    $("#content").keyup(valToDiv);
+    // emoji所在div被点击时触发
+    $('div.myEmoji').click(valToDiv);
+
+
+
+    $(".pic").click(function(){
+
+        $(".select_Img").click();
+
+
+    })
+    $(".video").click(function(){
+
+        $(".select_Video").click();
+
+
+    })
+
+        {#2018.11.24增加的留言区域按键事件#}
+        $(function () {
+            $(".reply").click(function(){
+                 console.log($(this).parent().parent().parent().parent().parent().next().toggle())
+            });
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+		  //添加表情包1
+    for (var i = 1; i < 60; i++) {
+
+        $(".emoji_1").append("<img src='../static/img/f"+i+".png' style='width:35px;height:35px' >");
+    }
+			//添加表情包2
+    for (var i = 1; i < 61; i++) {
+
+        $(".emoji_2").append("<img src='../static/img/h"+i+".png' style='width:35px;height:35px' >");
+    }
+
+
+    $(".emoji").click(function(){
+
+        $(".myEmoji").show();
+
+			//点击空白处隐藏弹出层
+        $(document).click(function (e) {
+
+            if (!$("#edit_form").is(e.target) && $("#edit_form").has(e.target).length === 0) {
+
+                $(".myEmoji").hide();
+				}
+			});
+
+
+		 });
+     {#将表情传至content#}
+     $(".myEmoji img").each(function(){
+				$(this).click(function(){
+					var url = $(this)[0].src;
+
+
+					$('#content').append("<img src='"+url+"' style='width:25px;height:25px' >");
+
+					{#$("#send").removeClass("disabled");#}
+				})
+		   })
+
+
+            {##}
+            {#将表情上传至服务器#}
+    {#$(".myEmoji img").each(function(){#}
+    {#    $(this).click(function(){#}
+    {#        var s= document.getElementById('content');#}
+    {#        var url = $(this)[0].src;#}
+    {#        console.log(url)#}
+    {##}
+    {#        s.innerText=url;#}
+    {#        $('#content').append("<img src='"+url+"' style='width:25px;height:25px' >");#}
+    {##}
+    {#    })#}
+    {# })#}
+
+			//放大或缩小预览图片
+    $(".mypic").click(function(){
+        var oWidth=$(this).width(); //取得图片的实际宽度
+        var oHeight=$(this).height(); //取得图片的实际高度
+
+        if($(this).height()!=200){
+            $(this).height(200);
+        }else{
+            $(this).height(oHeight + 200/oWidth*oHeight);
+
+        }
+
+    });
+    {#获取content的值返回到服务器#}
+
+        <!--删除帖子按钮-->
+        $('.delete_topic').click(function () {
+            console.log($(this).parent().find("[name='delete']"));
+            $(this).parent().find("[name='delete']").click();
+        });
+
+	})
+</script>
+
+{% endblock %}
